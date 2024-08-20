@@ -17,6 +17,16 @@ st.image("EGATlogo.png", width=None)
 st.header("Chat with the HR Medical Policy Document", divider="blue")
 
 load_dotenv()
+LOCAL_SECRETS = False
+
+if LOCAL_SECRETS:
+    ASTRA_TOKEN=os.environ["ASTRA_TOKEN"]
+    ASTRA_ENDPOINT=os.environ["ASTRA_ENDPOINT"]
+    OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+else:    
+    ASTRA_TOKEN=st.secrets["ASTRA_TOKEN"]
+    ASTRA_ENDPOINT=st.secrets["ASTRA_ENDPOINT"]
+    OPENAI_API_KEY=st.secrets["OPENAI_API_KEY"]
 
 if "messages" not in st.session_state.keys():  # Initialize the chat messages history
     st.session_state.messages = [
